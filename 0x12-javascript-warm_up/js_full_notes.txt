@@ -1,0 +1,261 @@
+
+==============================
+process.argv in Node.js
+مصفوفة process.argv في Node.js
+==============================
+
+🔹 What is process.argv?
+🔸 ما هي process.argv؟
+
+EN:
+- process.argv is an array in Node.js that holds command line arguments.
+- It allows you to access values entered by the user when running the script.
+
+AR:
+- process.argv هي مصفوفة في Node.js تحتوي على وسائط سطر الأوامر.
+- تتيح لك الوصول إلى القيم التي يدخلها المستخدم عند تشغيل السكربت.
+
+------------------------------
+
+🔹 Basic structure:
+🔸 التركيب الأساسي:
+
+process.argv = [
+  'node',          // process.argv[0]: Node.js path
+  'file.js',       // process.argv[1]: script file path
+  'arg1',          // process.argv[2]: first user argument
+  'arg2',          // process.argv[3]: second user argument
+  ...
+];
+
+------------------------------
+
+🔹 process.argv.length
+🔸 process.argv.length
+
+EN:
+- Returns the total number of items in the array.
+- Always ≥ 2 (because of node path and script path).
+- User arguments start from index 2.
+- To get only the number of user arguments:
+    const count = process.argv.length - 2;
+
+AR:
+- تُرجع عدد العناصر داخل مصفوفة process.argv.
+- دائمًا تحتوي على 2 عناصر ثابتة على الأقل.
+- وسائط المستخدم تبدأ من الفهرس 2.
+- لحساب عدد وسائط المستخدم فقط:
+    const count = process.argv.length - 2;
+
+------------------------------
+
+🔹 Combining Strings in console.log
+🔸 تركيب الجمل في console.log
+
+1️⃣ Using commas (`,`) in console.log:
+EN:
+- You can pass multiple values separated by commas.
+- They are printed with spaces between them.
+
+AR:
+- يمكن تمرير عدة قيم مفصولة بفواصل.
+- تُطبع القيم وبينها مسافات تلقائيًا.
+
+Example:
+```js
+console.log(process.argv[2], 'is', process.argv[3]);
+```
+
+2️⃣ Using `+` for string concatenation:
+EN:
+- Use `+` to merge values into one string.
+AR:
+- نستخدم `+` لدمج النصوص في سلسلة واحدة.
+
+Example:
+```js
+console.log(process.argv[2] + ' is ' + process.argv[3]);
+```
+
+3️⃣ Using template literals with backticks:
+EN:
+- Use backticks (`` ` ``) and `${...}` for easier readable code.
+
+AR:
+- استخدم backticks و `${...}` لكتابة الجمل بشكل أسهل وأوضح.
+
+Example:
+```js
+console.log(`${process.argv[2]} is ${process.argv[3]}`);
+```
+
+❗ Notes:
+- The entire sentence goes inside the backticks.
+- You must put any variable inside `${...}`.
+
+------------------------------
+
+🔹 parseInt
+🔸 تحويل النص إلى رقم باستخدام parseInt
+
+EN:
+- parseInt converts a string to an integer.
+- If the string doesn’t start with a number, it returns NaN.
+
+AR:
+- parseInt يحوّل النص إلى رقم صحيح (Integer).
+- إذا كانت القيمة لا تحتوي على رقم في البداية، يُرجع NaN.
+
+Example:
+```js
+let age = parseInt(process.argv[2]);
+```
+
+------------------------------
+
+🔹 isNaN
+🔸 التحقق من أن القيمة "ليست رقم"
+
+EN:
+- isNaN(value) checks if the value is "Not a Number".
+- Useful to validate user input.
+
+AR:
+- isNaN(value) تتحقق إذا كانت القيمة ليست رقمًا.
+- مفيدة لفحص إدخال المستخدم.
+
+Example:
+```js
+let age = parseInt(process.argv[2]);
+
+if (isNaN(age)) {
+  console.log("Please enter a valid number.");
+} else {
+  console.log(`Your age is ${age}`);
+}
+```
+
+------------------------------
+
+🔹 Notes about process.argc
+🔸 ملاحظات حول process.argc
+
+EN:
+- There is NO process.argc in Node.js.
+- Use process.argv.length instead.
+
+AR:
+- لا يوجد process.argc في Node.js.
+- استخدم process.argv.length لحساب عدد الوسائط.
+
+==============================
+
+🔹 process.stdout.write vs console.log
+🔸 الفرق بين process.stdout.write و console.log
+
+EN:
+- `console.log()` adds a newline (`\n`) at the end by default.
+- `process.stdout.write()` does NOT add a newline — you must add it manually.
+- Useful for writing on the same line or creating custom output.
+
+AR:
+- `console.log()` يضيف سطرًا جديدًا تلقائيًا في النهاية.
+- `process.stdout.write()` لا يضيف سطرًا جديدًا، ويجب إضافته يدويًا.
+- مفيد للطباعة في نفس السطر أو تخصيص التنسيق.
+
+Example:
+```js
+process.stdout.write("Hello ");
+process.stdout.write("World\n"); // you add the newline
+```
+
+------------------------------
+
+🔹 Objects in JavaScript
+🔸 الكائنات في جافاسكريبت
+
+EN:
+- Objects are used to store key-value pairs.
+- You access values using dot notation or bracket notation.
+
+AR:
+- الكائنات تُستخدم لتخزين بيانات على هيئة أزواج (المفتاح:القيمة).
+- يمكن الوصول للقيم باستخدام النقطة أو الأقواس.
+
+Example:
+```js
+let person = {
+  name: "Ahmed",
+  age: 25
+};
+
+// Access:
+console.log(person.name);       // dot notation
+console.log(person["age"]);     // bracket notation
+```
+
+------------------------------
+
+🔹 Removing a property from an object
+🔸 حذف خاصية من كائن
+
+EN:
+- Use `delete` keyword.
+
+AR:
+- استخدم الكلمة المفتاحية `delete`.
+
+Example:
+```js
+delete person.age;
+```
+
+------------------------------
+
+🔹 Arrow functions
+🔸 الدوال السهمية
+
+EN:
+- Arrow functions are a shorter way to write functions.
+
+AR:
+- الدوال السهمية هي طريقة مختصرة لكتابة الدوال.
+
+Syntax:
+```js
+// Traditional function
+function add(a, b) {
+  return a + b;
+}
+
+// Arrow function
+const add = (a, b) => a + b;
+```
+
+Note:
+- If the function has only one expression, you can omit `{}` and `return`.
+
+------------------------------
+
+🔹 Factorial function (using recursion)
+🔸 دالة المضروب (بالتكرار الذاتي)
+
+EN:
+- Factorial of n is: n * (n-1) * (n-2) ... * 1
+- Example: 5! = 5 * 4 * 3 * 2 * 1 = 120
+
+AR:
+- المضروب هو ضرب العدد في جميع الأعداد التي قبله حتى 1.
+- مثال: 5! = 5 × 4 × 3 × 2 × 1 = 120
+
+Example:
+```js
+function factorial(n) {
+  if (n === 0 || n === 1) return 1;
+  return n * factorial(n - 1);
+}
+
+console.log(factorial(5)); // 120
+```
+
+==============================
